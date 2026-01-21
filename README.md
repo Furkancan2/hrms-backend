@@ -1,40 +1,47 @@
 # HRMS (Human Resources Management System) Backend
 
-This repository contains the backend RESTful API for a Human Resources Management System. It is built using **Java** and **Spring Boot**, following the **N-Layered Architecture** principles.
+This repository contains the backend RESTful API for a Human Resources Management System. It is built using **Java** and **Spring Boot**, following the **N-Layered Architecture** principles and **Standardized Result Pattern**.
 
 ## 🚀 Technologies Used
 * **Language:** Java 17+
 * **Framework:** Spring Boot 3.x
 * **Database:** PostgreSQL
 * **Data Access:** Spring Data JPA (Hibernate)
+* **API Documentation:** SpringDoc OpenAPI (Swagger UI)
+* **Utilities:** Lombok
 * **Version Control:** Git & GitHub
 * **Build Tool:** Maven
 
-## 📂 Project Architecture (3-Layered Engineering Architecture)
+## 📂 Project Architecture (N-Layered Architecture)
 The project is designed with **Separation of Concerns** in mind:
 * **Api:** Controllers (REST Endpoints)
-* **Business:** Service Layer (Business Logic)
+* **Business:** Service Layer (Business Logic & Validation)
 * **DataAccess:** Repository Layer (Database Interactions)
 * **Entities:** Database Tables
-* **Core:** Universal/Shared Utilities (Result types, etc.)
+* **Core:** Universal/Shared Utilities (**Result Pattern**, Generic Response Wrappers)
 
 ## 🔌 API Endpoints
-### Job Titles
+
+### 📖 API Documentation (Swagger UI)
+You can view and test all API endpoints interactively via the Swagger UI interface:
+> **URL:** `http://localhost:8080/swagger-ui/index.html`
+
+### 💼 Job Titles
 * `GET /api/jobtitles/getall` - Lists all job positions in the system.
+* `POST /api/jobtitles/add` - Adds a new job position to the system.
 
-## ⚙️ Setup & Installation
-1.  Clone the repository:
-    ```bash
-    git clone [https://github.com/Furkancan2/hrms-backend.git](https://github.com/Furkancan2/hrms-backend.git)
-    ```
-2.  Configure PostgreSQL database settings in `application.properties`.
-3.  Run the application via your IDE or Maven wrapper:
-    ```bash
-    ./mvnw spring-boot:run
-    ```
+## 📦 Standard API Response Structure
+All API responses follow a unified structure (Result Pattern) to ensure consistency for frontend consumers.
 
-## 📝 Future Plans
-* User Management (Candidates, Employers)
-* Job Advertisements
-* Email Verification System
-* Swagger UI Integration
+**1. Success Data Response (e.g., GetAll):**
+```json
+{
+  "success": true,
+  "message": "Data listed successfully",
+  "data": [
+    {
+      "id": 1,
+      "title": "Software Engineer"
+    }
+  ]
+}
